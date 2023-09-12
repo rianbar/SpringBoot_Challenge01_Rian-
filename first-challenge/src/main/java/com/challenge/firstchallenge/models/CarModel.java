@@ -7,56 +7,42 @@ import jakarta.persistence.*;
 public class CarModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
     private Long idChassi;
     @Column(nullable = false)
-    private String model;
+    private String name;
     @Column(nullable = false)
     private String brand;
     @Column(nullable = false)
     private String color;
+    @Column(nullable = false)
+    private String fabricationYear;
+
+    public CarModel(Long id, String name, String brand, String color, String fabricationYear) {
+        this.idChassi = id;
+        this.name = name;
+        this.brand = brand;
+        this.color = color;
+        this.fabricationYear = fabricationYear;
+    }
 
     public Long getIdChassi() {
         return idChassi;
     }
 
-    public void setIdChassi(Long idChassi) {
-        this.idChassi = idChassi;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+    public String getName() {
+        return name;
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     public String getColor() {
         return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public String getFabricationYear() {
         return fabricationYear;
     }
-
-    public void setFabricationYear(String fabricationYear) {
-        this.fabricationYear = fabricationYear;
-    }
-
-    @Column(nullable = false)
-    private String fabricationYear;
 }
