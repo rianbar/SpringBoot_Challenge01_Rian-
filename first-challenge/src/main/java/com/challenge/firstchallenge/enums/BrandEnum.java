@@ -11,7 +11,12 @@ public enum BrandEnum {
         this.brand = brand;
     }
 
-    String getBrand() {
-        return this.brand;
+    public static boolean findBrand(String brand) {
+        for(BrandEnum brandEnum: values()) {
+            if (brandEnum.name().equals(brand)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

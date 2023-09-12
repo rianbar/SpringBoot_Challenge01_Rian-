@@ -1,6 +1,7 @@
 package com.challenge.firstchallenge.controllers;
 
 import com.challenge.firstchallenge.dtos.CarDTO;
+import com.challenge.firstchallenge.enums.BrandEnum;
 import com.challenge.firstchallenge.models.CarModel;
 import com.challenge.firstchallenge.services.CarService;
 import jakarta.validation.Valid;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @RestController
 public class CarControllers {
 
+    private static final String NOT_FOUND = "Data Not Found";
+
     private final CarService carService;
 
     @Autowired
@@ -23,6 +26,12 @@ public class CarControllers {
 
     @PostMapping("/cars")
     public ResponseEntity<Object> saveCars(@RequestBody @Valid CarDTO carDTO) {
+        boolean checkIfBrandExists = BrandEnum.findBrand(carDTO.getBrand());
+
+        if (!checkIfBrandExists) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_FOUND);
+        }
+
         boolean response = carService.saveCarService(carDTO);
         if (response)  {
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -31,15 +40,15 @@ public class CarControllers {
         }
     }
 
-    @GetMapping("/cars/{idChassi}")
-    public ResponseEntity<Object> getCar(@PathVariable(name = "idChassi") Long id) {
+    @GetMapping("/cars/{chassiId}")
+    public ResponseEntity<Object> getCar(@PathVariable(name = "chassiId") Long id) {
 
         Optional<CarModel> carModel = carService.getCarService(id);
 
         if (carModel.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(carModel);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Data Not Found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_FOUND);
         }
     }
 }

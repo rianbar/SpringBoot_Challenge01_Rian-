@@ -19,7 +19,7 @@ public class CarService {
        try {
            CarModel carModel = new CarModel(
                    carDTO.getModel(),
-                   carDTO.getBrand().name(),
+                   carDTO.getBrand(),
                    carDTO.getColor(),
                    carDTO.getFabricationYear()
            );

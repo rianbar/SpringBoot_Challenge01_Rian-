@@ -1,6 +1,5 @@
 package com.challenge.firstchallenge.dtos;
 
-import com.challenge.firstchallenge.enums.BrandEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -11,7 +10,8 @@ public class CarDTO {
     @NotBlank
     String model;
     @NotNull
-    BrandEnum brand;
+    @NotBlank
+    String brand;
     @NotNull
     @NotBlank
     String color;
@@ -23,7 +23,7 @@ public class CarDTO {
         return model;
     }
 
-    public BrandEnum getBrand() {
+    public String getBrand() {
         return brand;
     }
 
