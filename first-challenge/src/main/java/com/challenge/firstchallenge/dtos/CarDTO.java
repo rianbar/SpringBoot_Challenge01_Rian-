@@ -1,28 +1,26 @@
 package com.challenge.firstchallenge.dtos;
 
 import com.challenge.firstchallenge.enums.BrandEnum;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class CarDTO {
     @NotNull
-    Long idChassi;
-    @NotNull
-    String name;
+    @NotBlank
+    String model;
     @NotNull
     BrandEnum brand;
     @NotNull
+    @NotBlank
     String color;
     @NotNull
+    @NotBlank
     String fabricationYear;
 
-    public Long getIdChassi() {
-        return idChassi;
-    }
-
-    public String getName() {
-        return name;
+    public String getModel() {
+        return model;
     }
 
     public BrandEnum getBrand() {

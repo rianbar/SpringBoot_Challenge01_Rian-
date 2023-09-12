@@ -15,10 +15,10 @@ public class CarService {
     CarRepository carRepository;
 
     public boolean saveCarService(CarDTO carDTO) {
+
        try {
            CarModel carModel = new CarModel(
-                   carDTO.getIdChassi(),
-                   carDTO.getName(),
+                   carDTO.getModel(),
                    carDTO.getBrand().name(),
                    carDTO.getColor(),
                    carDTO.getFabricationYear()

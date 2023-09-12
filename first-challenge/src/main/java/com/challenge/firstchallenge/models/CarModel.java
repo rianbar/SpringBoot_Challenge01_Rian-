@@ -8,9 +8,10 @@ public class CarModel {
 
     @Id
     @Column(unique = true, nullable = false)
-    private Long idChassi;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long chassiId;
     @Column(nullable = false)
-    private String name;
+    private String model;
     @Column(nullable = false)
     private String brand;
     @Column(nullable = false)
@@ -18,20 +19,23 @@ public class CarModel {
     @Column(nullable = false)
     private String fabricationYear;
 
-    public CarModel(Long id, String name, String brand, String color, String fabricationYear) {
-        this.idChassi = id;
-        this.name = name;
+    protected CarModel() {
+        //for Jpa and Hibernate
+    }
+
+    public CarModel(String model, String brand, String color, String fabricationYear) {
+        this.model = model;
         this.brand = brand;
         this.color = color;
         this.fabricationYear = fabricationYear;
     }
 
-    public Long getIdChassi() {
-        return idChassi;
+    public Long getChassiId() {
+        return chassiId;
     }
 
-    public String getName() {
-        return name;
+    public String getModel() {
+        return model;
     }
 
     public String getBrand() {

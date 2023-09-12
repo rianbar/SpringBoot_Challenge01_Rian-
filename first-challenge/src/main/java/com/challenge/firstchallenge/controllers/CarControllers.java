@@ -25,7 +25,7 @@ public class CarControllers {
     public ResponseEntity<Object> saveCars(@RequestBody @Valid CarDTO carDTO) {
         boolean response = carService.saveCarService(carDTO);
         if (response)  {
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Data");
         }
