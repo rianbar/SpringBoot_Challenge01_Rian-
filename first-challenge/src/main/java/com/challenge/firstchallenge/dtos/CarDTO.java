@@ -2,21 +2,22 @@ package com.challenge.firstchallenge.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import jakarta.validation.constraints.Pattern;
 
-@Data
 public class CarDTO {
-    @NotNull
-    @NotBlank
+
+    @NotNull(message = "model cannot be null")
+    @NotBlank(message = "model cannot be empty")
     String model;
-    @NotNull
-    @NotBlank
+    @NotNull(message = "brand cannot be null")
+    @NotBlank(message = "brand cannot be empty")
     String brand;
-    @NotNull
-    @NotBlank
+    @NotNull(message = "color cannot be null")
+    @NotBlank(message = "color cannot be empty")
     String color;
-    @NotNull
-    @NotBlank
+    @NotNull(message = "year cannot be null")
+    @NotBlank(message = "year cannot be empty")
+    @Pattern(regexp = "([0-9]{4})/([0-9]{4})", message = "invalid year")
     String fabricationYear;
 
     public String getModel() {
