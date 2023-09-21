@@ -1,5 +1,6 @@
 package com.challenge.firstchallenge.controllers;
 
+import com.challenge.firstchallenge.controllers.exceptions.CarNotFoundException;
 import com.challenge.firstchallenge.dtos.CarDTO;
 import com.challenge.firstchallenge.enums.BrandEnum;
 import com.challenge.firstchallenge.models.CarModel;
@@ -29,14 +30,14 @@ public class CarControllers {
         boolean checkIfBrandExists = BrandEnum.findBrand(carDTO.getBrand());
 
         if (!checkIfBrandExists) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_FOUND);
+            throw new CarNotFoundException(NOT_FOUND);
         }
 
         boolean response = carService.saveCarService(carDTO);
         if (response)  {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Data");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("not found!");
         }
     }
 
@@ -48,7 +49,7 @@ public class CarControllers {
         if (carModel.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(carModel);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(NOT_FOUND);
+            throw new CarNotFoundException(NOT_FOUND);
         }
     }
 }
